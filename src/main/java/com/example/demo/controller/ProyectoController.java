@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author Andres    Proyecto proyecto
  */
-@CrossOrigin("http://localhost:4200")
+
 @RestController
 @RequestMapping("/proyectos")
 public class ProyectoController {
