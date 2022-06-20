@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
-@CrossOrigin("*")
+@CrossOrigin("http://localhost:4200")
 @RestController
 @RequestMapping("/api/login")
 public class UserController {
