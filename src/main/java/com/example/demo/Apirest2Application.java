@@ -18,27 +18,28 @@ public class Apirest2Application {
 	public static void main(String[] args) {
 		SpringApplication.run(Apirest2Application.class, args);
 	}
-        
-        	public WebMvcConfigurer corsConfigurer() {
+
+	public WebMvcConfigurer corsConfigurer() {
 		return new WebMvcConfigurer() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/**").allowedOrigins("http://localhost:4200");
+				registry.addMapping("/**").allowedOrigins("http://localhost:4200").allowedMethods("*")
+						.allowedHeaders("*");
 			}
 		};
 	}
 
-        @EnableWebSecurity
+	@EnableWebSecurity
 	@Configuration
 	class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 		@Override
 		protected void configure(HttpSecurity http) throws Exception {
 			http.csrf().disable()
-				.addFilterAfter(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
-				.authorizeRequests()
-				.antMatchers(HttpMethod.POST, "/api/login").permitAll()
-				.anyRequest().authenticated();
+					.addFilterAfter(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
+					.authorizeRequests()
+					.antMatchers(HttpMethod.POST, "/api/login").permitAll()
+					.anyRequest().authenticated();
 		}
 	}
 }
